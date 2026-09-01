@@ -42,24 +42,23 @@ const game = () => {
 
   const ballPosition = () => {
     const radians = ball.degrees * (Math.PI / 180);
+    ball.x += Math.cos(radians) * ball.speed;
 
-    if(direction === "UP") {
-      ball.x += Math.cos(radians) * ball.speed;
+    if (direction === "UP")
       ball.y -= Math.sin(radians) * ball.speed;
-    } else {
-      ball.x += Math.cos(radians) * ball.speed;
+    else
       ball.y += Math.sin(radians) * ball.speed;
-    }
+
   }
 
   const ballCollision = () => {
     if (ball.x - ball.r < 0 || ball.x + ball.r > canvas.width) {
       ball.degrees = 180 - ball.degrees;
     }
-    
+
     if (ball.y + ball.r > player1.y
-      && ball.x > player1.x 
-      && ball.x < player1.x + player1.width 
+      && ball.x > player1.x
+      && ball.x < player1.x + player1.width
     ) {
       direction = "UP";
     }
